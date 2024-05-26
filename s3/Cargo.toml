@@ -22,10 +22,8 @@ path = "src/lib.rs"
 async-std = { version = "1", optional = true }
 async-trait = "0.1"
 attohttpc = { version = "0.19", optional = true, default-features = false }
-aws-creds = { version = "0.30.0", default-features = false }
-# aws-creds = { path = "../aws-creds", default-features = false }
-aws-region = "0.25.1"
-# aws-region = {path = "../aws-region"}
+aws-creds = { path = "../aws-creds", default-features = false }
+aws-region = {path = "../aws-region"}
 base64 = "0.13"
 cfg-if = "1"
 time = { version = "^0.3.6", features = ["formatting", "macros"] }
@@ -47,9 +45,6 @@ serde_derive = "1"
 serde-xml-rs = "0.5"
 sha2 = "0.10"
 thiserror = "1"
-surf = { version = "2", optional = true, default-features = false, features = [
-    "h1-client-rustls",
-] }
 tokio = { version = "1", features = [
     "io-util",
 ], optional = true, default-features = false }
@@ -61,16 +56,10 @@ block_on_proc = { version = "0.2", optional = true }
 
 [features]
 with-tokio = ["reqwest", "tokio", "tokio/fs", "tokio-stream"]
-with-async-std = ["async-std", "surf", "futures-io", "futures-util"]
-sync = ["attohttpc", "maybe-async/is_sync"]
-default = ["tags", "tokio-native-tls", "fail-on-err"]
+default = ["tokio-rustls-tls", "tags", "fail-on-err"]
 no-verify-ssl = []
 fail-on-err = []
-tokio-native-tls = ["with-tokio", "reqwest/native-tls", "aws-creds/native-tls"]
 tokio-rustls-tls = ["with-tokio", "reqwest/rustls-tls", "aws-creds/rustls-tls"]
-sync-native-tls = ["sync", "aws-creds/native-tls", "attohttpc/tls"]
-sync-rustls-tls = ["sync", "aws-creds/rustls-tls", "attohttpc/tls-rustls"]
-blocking = ["block_on_proc", "tokio/rt", "tokio/rt-multi-thread"]
 tags = ["minidom"]
 
 [dev-dependencies]
@@ -78,6 +67,5 @@ tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "fs"] }
 async-std = { version = "1", features = ["attributes"] }
 uuid = { version = "1", features = ["v4"] }
 env_logger = "0.9"
-aws-creds = { version = "0.30", default-features = false }
-# aws-creds = { path = "../aws-creds", features = ["http-credentials"] }
+aws-creds = { path = "../aws-creds", features = ["http-credentials"] }
 anyhow = "1"
