@@ -49,7 +49,7 @@ use crate::utils::error_from_response_data;
 use http::header::HeaderName;
 use http::HeaderMap;
 
-pub const CHUNK_SIZE: usize = 134_217_728; // 128 Mebibytes (8 wasn't enough), min is 5 (5_242_880);
+pub const CHUNK_SIZE: usize = 268_435_456; // 256 Mebibytes (8 wasn't enough), min is 5 (5_242_880);
 
 const DEFAULT_REQUEST_TIMEOUT: Option<Duration> = Some(Duration::from_secs(60));
 
